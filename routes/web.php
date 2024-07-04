@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController\index;
+use App\Http\Controllers\UserController\UserCurtida;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,4 +23,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::prefix('/user')->group(function () {
+        Route::get('/', [index::class, '__invoke']);
+
+        Route::get('/curtidas', [UserCurtida::class, '__invoke']);
+    });
 });
