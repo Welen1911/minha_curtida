@@ -52,12 +52,12 @@ const handleSubmit = async (id) => {
             toast('Curtiu!');
         }
 
-        button.value = false;
-
     } catch (e) {
-        button.value = false;
         console.error(e);
         toast.error('Ocorreu um erro, tente novamente mais tarde!');
+    } finally {
+        button.value = false;
+
     }
 }
 </script>
