@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController\CreateCurtida;
 use App\Http\Controllers\UserController\index;
 use App\Http\Controllers\UserController\UserCurtida;
 use Illuminate\Foundation\Application;
@@ -28,5 +29,6 @@ Route::middleware([
         Route::get('/', [index::class, '__invoke']);
 
         Route::get('/curtidas', [UserCurtida::class, '__invoke']);
+        Route::post('/curtidas/{id}', [CreateCurtida::class, '__invoke']);
     });
 });

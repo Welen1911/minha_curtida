@@ -12,5 +12,12 @@ export default httpClient => ({
         return {
             data: response.data
         }
+    },
+    createCurtida: async (id) => {
+        const response = await httpClient.post(`/user/curtidas/${id}`);
+
+        return {
+            data: response.data
+        }
     }
 });
