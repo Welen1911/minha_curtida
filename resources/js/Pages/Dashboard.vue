@@ -15,11 +15,17 @@ const button = ref(false);
 
 onMounted(async () => {
     try {
-        const { data } = await services.user.getCurtidas();
-
-        console.log(data);
+        const { data } = await services.user.getMe();
 
         curtidas.value = data.curtidas;
+
+        window.Echo.private(`curtida.${data.id}`).listen(
+            'CurtidaEvent', (e) => {
+                console.log(e);
+
+                curtidas.value = e.curtidas;
+            }
+        );
 
     } catch (e) {
         console.error(e);
@@ -29,8 +35,6 @@ onMounted(async () => {
 onBeforeMount(async () => {
     try {
         const { data } = await services.user.getAll();
-
-        console.log(data);
 
         users.value = data;
 
@@ -45,8 +49,6 @@ const handleSubmit = async (id) => {
         button.value = true;
 
         const { data } = await services.user.createCurtida(id);
-
-        console.log(data);
 
         if (!!data) {
             toast('Curtiu!');

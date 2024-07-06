@@ -6,7 +6,7 @@ export default httpClient => ({
             data: response.data
         }
     },
-    getCurtidas: async () => {
+    getMe: async () => {
         const response = await httpClient.get('/user/curtidas');
 
         return {

@@ -9,8 +9,6 @@ class UserCurtida extends Controller
 {
     public function __invoke()
     {
-        $curtidas = auth()->user()->curtidas;
-
-        return response(['curtidas' => $curtidas], 200);
+        return auth()->user();
     }
 }
